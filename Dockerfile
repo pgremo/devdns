@@ -1,12 +1,9 @@
-FROM alpine:3.3
-MAINTAINER Pål Ruud <ruudud@gmail.com>
+FROM alpine:latest
+MAINTAINER Patrick Gremo <patrick.gremo@gmail.com>
 
-RUN apk --no-cache add bash curl dnsmasq
+RUN apk --no-cache add bash curl dnsmasq docker
 
-RUN curl -sSL https://get.docker.com/builds/Linux/x86_64/docker-1.11.1.tgz \
-        | tar zx -C /tmp &&\
-    mv /tmp/docker/* /usr/local/bin/ &&\
-    mkdir -p /etc/dnsmasq.d
+RUN mkdir -p /etc/dnsmasq.d
 
 COPY dnsmasq.conf /etc/dnsmasq.conf
 COPY run.sh /run.sh
